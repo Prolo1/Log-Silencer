@@ -11,6 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)LogSilencer.Hooks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConfigurationManagerAttributes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LogSilencer..cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogSilencer.cs" />
   </ItemGroup>
 </Project>
