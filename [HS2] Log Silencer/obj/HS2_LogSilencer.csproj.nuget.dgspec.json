@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\HS2_LogSilencer.csproj": {}
+  },
+  "projects": {
+    "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\HS2_LogSilencer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\HS2_LogSilencer.csproj",
+        "projectName": "LogSilencer",
+        "projectPath": "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\HS2_LogSilencer.csproj",
+        "packagesPath": "C:\\Users\\em3\\.nuget\\packages\\",
+        "outputPath": "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\em3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/IllusionMods/Nuget/_packaging/IllusionMods/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "IllusionModdingAPI.HS2API": {
+              "target": "Package",
+              "version": "[1.35.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

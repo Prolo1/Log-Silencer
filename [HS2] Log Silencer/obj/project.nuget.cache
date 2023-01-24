@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "iSA6Y1YG0XM0erYPUOsZg2InReN9Bc2ZWQj+nS4WHPXnUVWrtAjOtRsCsufzCcnS7+oMJgutxg+4W1aSlCAf2Q==",
+  "success": true,
+  "projectFilePath": "D:\\Games\\Illusion\\Mod Projects\\Mod Collection Repo\\LogSilencer\\LogSilencer\\HS2_LogSilencer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.bepinex\\5.4.20\\illusionlibs.bepinex.5.4.20.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.bepinex.harmony\\2.9.0\\illusionlibs.bepinex.harmony.2.9.0.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.assembly-csharp\\2020.5.29.4\\illusionlibs.honeyselect2.assembly-csharp.2020.5.29.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.assembly-csharp-firstpass\\2020.5.29.4\\illusionlibs.honeyselect2.assembly-csharp-firstpass.2020.5.29.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.il\\2020.5.29.4\\illusionlibs.honeyselect2.il.2020.5.29.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.sirenix.serialization\\2020.5.29.4\\illusionlibs.honeyselect2.sirenix.serialization.2020.5.29.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.unirx\\2020.5.29.4\\illusionlibs.honeyselect2.unirx.2020.5.29.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.coremodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.coremodule.2018.4.11.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.imguimodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.imguimodule.2018.4.11.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.ui\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.ui.2018.4.11.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.uimodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.uimodule.2018.4.11.4.nupkg.sha512",
+    "C:\\Users\\em3\\.nuget\\packages\\illusionmoddingapi.hs2api\\1.35.0\\illusionmoddingapi.hs2api.1.35.0.nupkg.sha512"
+  ],
+  "logs": []
+}
