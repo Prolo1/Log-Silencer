@@ -1,7 +1,0 @@
-<Project>
-  <Target Name="IllusionLibsHoneySelect2SirenixSerialization" AfterTargets="ResolveReferences">
-    <ItemGroup>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'IllusionLibs.HoneySelect2.Sirenix.Serialization'" />
-    </ItemGroup>
-  </Target>
-</Project>

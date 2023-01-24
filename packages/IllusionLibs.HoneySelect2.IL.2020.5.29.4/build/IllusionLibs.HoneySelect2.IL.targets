@@ -1,7 +1,0 @@
-<Project>
-  <Target Name="IllusionLibsHoneySelect2IL" AfterTargets="ResolveReferences">
-    <ItemGroup>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'IllusionLibs.HoneySelect2.IL'" />
-    </ItemGroup>
-  </Target>
-</Project>
