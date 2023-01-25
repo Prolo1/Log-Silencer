@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using BepInEx.Logging;
 using HarmonyLib;
-
+using UnityEngine;
 
 namespace Log_Silencer
 {
@@ -15,7 +14,7 @@ namespace Log_Silencer
 			{
 				Harmony.CreateAndPatchAll(typeof(Hooks), GUID);
 				Harmony.CreateAndPatchAll(typeof(SilancePatch), GUID);
-				Logger.LogDebug("");
+				//	Harmony.CreateAndPatchAll(typeof(Silance2Patch), GUID);
 			}
 
 
@@ -25,31 +24,34 @@ namespace Log_Silencer
 			{
 
 
-				static bool Prefix(BepInEx.Logging.LogLevel __0)
+				static bool Prefix(BepInEx.Logging.LogLevel __0, ManualLogSource __instance)
 				{
-					switch(__0)
-					{
+					//	__instance.SourceName;
 
-					case BepInEx.Logging.LogLevel.Debug:
-						return !cfg.disableDebugLogs.Value;
+					if((__0 & BepInEx.Logging.LogLevel.Debug) > 0)
+						if(cfg.disableDebugLogs.Value)
+							return !cfg.disableDebugLogs.Value;
 
-					case BepInEx.Logging.LogLevel.Message:
-						return !cfg.disableMessageLogs.Value;
+					if((__0 & BepInEx.Logging.LogLevel.Warning) > 0)
+						if(cfg.disableWarningLogs.Value)
+							return !cfg.disableWarningLogs.Value;
 
-					case BepInEx.Logging.LogLevel.Warning:
-						return !cfg.disableWarningLogs.Value;
+					if((__0 & BepInEx.Logging.LogLevel.Info) > 0)
+						if(cfg.disableInfoLogs.Value)
+							return !cfg.disableInfoLogs.Value;
 
-					case BepInEx.Logging.LogLevel.Error:
-						return !cfg.disableErrorLogs.Value;
+					if((__0 & BepInEx.Logging.LogLevel.Message) > 0)
+						if(cfg.disableMessageLogs.Value)
+							return !cfg.disableMessageLogs.Value;
 
-					case BepInEx.Logging.LogLevel.Info:
-						return !cfg.disableInfoLogs.Value;
-					}
+					if((__0 & BepInEx.Logging.LogLevel.Error) > 0)
+						if(cfg.disableErrorLogs.Value)
+							return !cfg.disableErrorLogs.Value;
+
 					return true;
-
-
 				}
 			}
+
 
 		}
 
