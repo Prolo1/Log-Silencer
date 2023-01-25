@@ -63,7 +63,13 @@ namespace Log_Silencer
 				disableUnityDebugLogs = Config.Bind("_Main_", "Disable Unity Debug Logs", true, new ConfigDescription("Disables Unity's Debug.Log() logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index, IsAdvanced = true, Browsable = false })),
 			};
 
-			Hooks.Init();
+			IEnumerator TheMeat()
+			{
+				yield return null;
+				//	FindObjectsOfType<BaseUnityPlugin>()[0].Info.Metadata.Name;
+				Hooks.Init();
+			}
+			StartCoroutine(TheMeat());
 
 		}
 	}

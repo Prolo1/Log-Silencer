@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace Log_Silencer
 			{
 				Harmony.CreateAndPatchAll(typeof(Hooks), GUID);
 				Harmony.CreateAndPatchAll(typeof(SilancePatch), GUID);
-			//	Harmony.CreateAndPatchAll(typeof(Silance2Patch), GUID);
+				//	Harmony.CreateAndPatchAll(typeof(Silance2Patch), GUID);
 			}
 
 
@@ -25,25 +24,26 @@ namespace Log_Silencer
 			{
 
 
-				static bool Prefix(BepInEx.Logging.LogLevel __0)
+				static bool Prefix(BepInEx.Logging.LogLevel __0, ManualLogSource __instance)
 				{
+					//	__instance.SourceName;
 
 					if((__0 & BepInEx.Logging.LogLevel.Debug) > 0)
 						if(cfg.disableDebugLogs.Value)
 							return !cfg.disableDebugLogs.Value;
-					
+
 					if((__0 & BepInEx.Logging.LogLevel.Warning) > 0)
 						if(cfg.disableWarningLogs.Value)
 							return !cfg.disableWarningLogs.Value;
-					
+
 					if((__0 & BepInEx.Logging.LogLevel.Info) > 0)
 						if(cfg.disableInfoLogs.Value)
 							return !cfg.disableInfoLogs.Value;
-					
+
 					if((__0 & BepInEx.Logging.LogLevel.Message) > 0)
 						if(cfg.disableMessageLogs.Value)
 							return !cfg.disableMessageLogs.Value;
-				
+
 					if((__0 & BepInEx.Logging.LogLevel.Error) > 0)
 						if(cfg.disableErrorLogs.Value)
 							return !cfg.disableErrorLogs.Value;
