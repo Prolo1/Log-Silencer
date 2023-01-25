@@ -1,7 +1,7 @@
 [![Latest release](https://img.shields.io/github/release/Prolo1/Log-Silencer.svg?style=flat)](https://github.com/Prolo1/Log-Silencer/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/Prolo1/Log-Silencer/total.svg?style=flat)](https://github.com/Prolo1/Log-Silencer/releases)
 
-# Log-Silencer
+# Log Silencer
 
 ## Table Of Contents
 1. [Description](#description)
