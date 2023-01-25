@@ -17,6 +17,11 @@ using UnityEngine;
 
 namespace Log_Silencer
 {
+	// Specify this as a plugin that gets loaded by BepInEx
+	[BepInPlugin(GUID, ModName, Version)]
+	// Tell BepInEx that we need KKAPI to run, and that we need the latest version of it.
+	// Check documentation of KoikatuAPI.VersionConst for more info.
+	[BepInDependency(KKAPI.KoikatuAPI.GUID, KKAPI.KoikatuAPI.VersionConst)]
 	public partial class LogSilencer_Core : BaseUnityPlugin
 	{
 		public const string ModName = "Log Silencer";
@@ -35,6 +40,7 @@ namespace Log_Silencer
 			public ConfigEntry<bool> disableInfoLogs;
 			public ConfigEntry<bool> disableMessageLogs;
 			public ConfigEntry<bool> disableErrorLogs;
+			public ConfigEntry<bool> disableUnityDebugLogs;
 			public ConfigEntry<bool> resetOnLaunch;
 		}
 
@@ -47,15 +53,23 @@ namespace Log_Silencer
 			int index = 0;
 			cfg = new LogSilencerConfig
 			{
-				disableDebugLogs = Config.Bind("_Main_", "Disable Debug Logs", true, new ConfigDescription("Disables debug logs from being written to the log file",null, new ConfigurationManagerAttributes { Order = --index })),
-				disableWarningLogs = Config.Bind("_Main_", "Disable Warning Logs", true, new ConfigDescription("Disables warning logs from being written to the log file",null, new ConfigurationManagerAttributes { Order = --index })),
-				disableInfoLogs = Config.Bind("_Main_", "Disable info Logs", false, new ConfigDescription("Disables info logs from being written to the log file",null, new ConfigurationManagerAttributes { Order = --index })),
-				disableMessageLogs = Config.Bind("_Main_", "Disable Message Logs", false, new ConfigDescription("Disables message logs from being written to the log file",null, new ConfigurationManagerAttributes { Order = --index })),
-				disableErrorLogs = Config.Bind("_Main_", "Disable Error Logs", false, new ConfigDescription("Disables error logs from being written to the log file",null, new ConfigurationManagerAttributes {Order=--index })),
-				resetOnLaunch = Config.Bind("_Main_", "Reset On Launch", true, new ConfigDescription("",null, new ConfigurationManagerAttributes { IsAdvanced = true,Browsable=false })),
+				disableDebugLogs = Config.Bind("_Main_", "Disable Debug Logs", true, new ConfigDescription("Disables debug logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
+				disableWarningLogs = Config.Bind("_Main_", "Disable Warning Logs", true, new ConfigDescription("Disables warning logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
+				disableInfoLogs = Config.Bind("_Main_", "Disable Info Logs", false, new ConfigDescription("Disables info logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
+				disableMessageLogs = Config.Bind("_Main_", "Disable Message Logs", false, new ConfigDescription("Disables message logs from popping up on screen/log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
+				disableErrorLogs = Config.Bind("_Main_", "Disable Error Logs", false, new ConfigDescription("Disables error logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
+
+				resetOnLaunch = Config.Bind("_Main_", "Reset On Launch", true, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true, Browsable = false })),
+				disableUnityDebugLogs = Config.Bind("_Main_", "Disable Unity Debug Logs", true, new ConfigDescription("Disables Unity's Debug.Log() logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index, IsAdvanced = true, Browsable = false })),
 			};
 
-			Hooks.Init();
+			IEnumerator TheMeat()
+			{
+				yield return null;
+				//	FindObjectsOfType<BaseUnityPlugin>()[0].Info.Metadata.Name;
+				Hooks.Init();
+			}
+			StartCoroutine(TheMeat());
 
 		}
 	}
@@ -132,7 +146,7 @@ namespace Log_Silencer
 			v1.ConfigDefaulter((T)v1.DefaultValue);
 
 
-	
+
 		/// <summary>
 		/// Crates Image Texture based on path
 		/// </summary>
