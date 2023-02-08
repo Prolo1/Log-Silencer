@@ -71,13 +71,13 @@ namespace Log_Silencer
 				int maxWidth = 300;
 				if(modList.Length > 0)
 					if((btn = GUILayout.Button(new GUIContent { text = $"selected mod: {modList[selectedMod]}" },
-						GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true),GUILayout.MaxWidth(maxWidth))) || selectingMod)
+						GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true), GUILayout.MaxWidth(maxWidth))) || selectingMod)
 					{
 						selectingMod = !(btn && selectingMod);//if dropdown btn was pressed
 
 						scrollview = GUILayout.BeginScrollView(scrollview, false, false,
 							GUILayout.ExpandWidth(true),
-							GUILayout.ExpandHeight(true), GUILayout.Height(200),GUILayout.MaxWidth(maxWidth));
+							GUILayout.ExpandHeight(true), GUILayout.Height(200), GUILayout.MaxWidth(maxWidth));
 
 
 						var select = GUILayout.SelectionGrid(selectedMod, modList, 1, GUILayout.ExpandWidth(true));
@@ -239,7 +239,7 @@ namespace Log_Silencer
 		public static T AddNReturn<T>(this ICollection<T> list, T val)
 		{
 			list.Add(val);
-			return list.Last();
+			return val;
 		}
 
 		/// <summary>
@@ -327,8 +327,9 @@ namespace Log_Silencer
 		public static T[] RemoveIndex<T>(this T[] array, int index)
 		{
 			if(index < 0) return array;
-			Array.Copy(array, index + 1, array, index, array.Length - (index + 1));
-			Array.Resize(ref array, array.Length - 1);
+			int length;
+			Array.Copy(array, index + 1, array, index, length = array.Length - (index + 1));
+			Array.Resize(ref array, array.Length - length);
 
 			return array;
 		}
