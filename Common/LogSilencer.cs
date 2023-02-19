@@ -24,7 +24,7 @@ namespace Log_Silencer
 	{
 		public const string ModName = "Log Silencer";
 		public const string GUID = "prolo.logsilencer";//never change this
-		public const string Version = "1.0.0";
+		public const string Version = "1.1.0";
 
 		internal static LogSilencer_Core Instance;
 		internal static new ManualLogSource Logger;
