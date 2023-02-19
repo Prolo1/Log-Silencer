@@ -64,11 +64,10 @@ namespace Log_Silencer
 			try
 			{
 				GUILayout.BeginVertical();
-				var onPress = GUILayout.Button(new GUIContent { text = entry.Definition.Key, tooltip = entry.Description.Description }, GUILayout.ExpandWidth(true));
-				GUILayout.Space(3);
 
+				GUILayout.Space(3);
 				bool btn;
-				int maxWidth = 300;
+				int maxWidth = 350;
 				if(modList.Length > 0)
 					if((btn = GUILayout.Button(new GUIContent { text = $"selected mod: {modList[selectedMod]}" },
 						GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true), GUILayout.MaxWidth(maxWidth))) || selectingMod)
@@ -86,11 +85,25 @@ namespace Log_Silencer
 
 						GUILayout.EndScrollView();
 					}
-
 				GUILayout.Space(5);
+
+				var savePress = GUILayout.Button(new GUIContent { text = "Save Default To Mod", tooltip = entry.Description.Description }, GUILayout.ExpandWidth(true));
+				var clearPress = GUILayout.Button(new GUIContent { text = "Clear Selected Mod", tooltip = entry.Description.Description }, GUILayout.ExpandWidth(true));
 				GUILayout.EndVertical();
 
-				if(onPress)
+				if(clearPress)
+				{
+					var cfg1 = modCfgs[modList[selectedMod]];
+
+					cfg1.enable.ConfigDefaulter();
+					cfg1.disableDebugLogs.ConfigDefaulter();
+					cfg1.disableWarningLogs.ConfigDefaulter();
+					cfg1.disableInfoLogs.ConfigDefaulter();
+					cfg1.disableMessageLogs.ConfigDefaulter();
+					cfg1.disableErrorLogs.ConfigDefaulter();
+				}
+
+				if(savePress)
 				{
 					//Logger.Log(BepInEx.Logging.LogLevel.Message, $"Set values for: {modList[selectedMod]}");
 
@@ -152,7 +165,7 @@ namespace Log_Silencer
 				disableMessageLogs = Config.Bind("_Default Settings_", "Disable Message Logs", false, new ConfigDescription("Disables message logs from popping up on screen/log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
 				disableErrorLogs = Config.Bind("_Default Settings_", "Disable Error Logs", false, new ConfigDescription("Disables error logs from being written to the log file (enabling this can help improve performance)", null, new ConfigurationManagerAttributes { Order = --index })),
 
-				btnSaveToMod = Config.Bind("_Per Mod Settings_", "Save Default To Mod", "", new ConfigDescription("Save the currently set default to a specific Mod", null, new ConfigurationManagerAttributes { Order = --index, CustomDrawer = BtnSaveDefaultToMod, HideDefaultButton = true })),
+				btnSaveToMod = Config.Bind("_Per Mod Settings_", "Per Mod Settings", "", new ConfigDescription("Save the currently set \"Default Settings\" to a specific Mod, or clear selected mod to default settings", null, new ConfigurationManagerAttributes { Order = --index, CustomDrawer = BtnSaveDefaultToMod, HideDefaultButton = true })),
 				btnResetAllMods = Config.Bind("_Per Mod Settings_", "Clear All Mod Configs", "", new ConfigDescription("Clear all set Mod configs", null, new ConfigurationManagerAttributes { Order = --index, CustomDrawer = BtnResetAllMods, HideDefaultButton = true })),
 				showModInAdvanced = Config.Bind("_Per Mod Settings_", "Show Per Mod Configs", false, new ConfigDescription("Show the entire list of config settings with advanced settings (MUST CLOSE AND OPEN \"PLUGIN SETTINGS\" FOR IT TO TAKE AFFECT)", null, new ConfigurationManagerAttributes { Order = --index, IsAdvanced = true, Browsable = true, })),
 
