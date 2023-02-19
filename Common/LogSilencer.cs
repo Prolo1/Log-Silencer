@@ -36,7 +36,6 @@ namespace Log_Silencer
 		{
 			public ConfigEntry<bool> enable;
 
-			//public ConfigEntry<string> btnSaveToMod;
 			public ConfigEntry<bool> disableDebugLogs;
 			public ConfigEntry<bool> disableWarningLogs;
 			public ConfigEntry<bool> disableInfoLogs;
@@ -105,8 +104,6 @@ namespace Log_Silencer
 
 				if(savePress)
 				{
-					//Logger.Log(BepInEx.Logging.LogLevel.Message, $"Set values for: {modList[selectedMod]}");
-
 					var cfg1 = modCfgs[modList[selectedMod]];
 
 					cfg1.enable.Value = cfg.enable.Value;
@@ -131,9 +128,8 @@ namespace Log_Silencer
 			}, GUILayout.ExpandWidth(true)))
 				foreach(var key in modCfgs?.Keys)
 				{
-					//Logger.Log(BepInEx.Logging.LogLevel.Message, $"Reset default values for: {key}");
-
 					var cfg1 = modCfgs[key.Trim()];
+
 					cfg1.enable.ConfigDefaulter();
 					cfg1.disableDebugLogs.ConfigDefaulter();
 					cfg1.disableWarningLogs.ConfigDefaulter();
