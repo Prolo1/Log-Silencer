@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using BepInEx;
 using BepInEx.Logging;
+using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
+using UniRx.Triggers;
+using ADV.Commands.Base;
 
 namespace Log_Silencer
 {
@@ -24,31 +28,43 @@ namespace Log_Silencer
 			{
 
 
-				static bool Prefix(BepInEx.Logging.LogLevel __0, ManualLogSource __instance)
+				static bool Prefix(ref BepInEx.Logging.LogLevel __0, ref object __1, ManualLogSource __instance)
 				{
-					//	__instance.SourceName;
+					if(!cfg.enable.Value) return true;
+					var name = __instance.SourceName.Trim();
+					modCfgs.TryGetValue(name, out var val);
+					bool useDefault = !(val?.enable?.Value ?? false);
 
-					if((__0 & BepInEx.Logging.LogLevel.Debug) > 0)
-						if(cfg.disableDebugLogs.Value)
-							return !cfg.disableDebugLogs.Value;
 
-					if((__0 & BepInEx.Logging.LogLevel.Warning) > 0)
-						if(cfg.disableWarningLogs.Value)
-							return !cfg.disableWarningLogs.Value;
 
-					if((__0 & BepInEx.Logging.LogLevel.Info) > 0)
-						if(cfg.disableInfoLogs.Value)
-							return !cfg.disableInfoLogs.Value;
+					//if a log level is set
+					bool active = __0 != BepInEx.Logging.LogLevel.None;
 
-					if((__0 & BepInEx.Logging.LogLevel.Message) > 0)
-						if(cfg.disableMessageLogs.Value)
-							return !cfg.disableMessageLogs.Value;
+					if(useDefault ? cfg.disableDebugLogs.Value :
+						val.disableDebugLogs.Value)
+						__0 &= ~BepInEx.Logging.LogLevel.Debug;
 
-					if((__0 & BepInEx.Logging.LogLevel.Error) > 0)
-						if(cfg.disableErrorLogs.Value)
-							return !cfg.disableErrorLogs.Value;
+					if(useDefault ? cfg.disableWarningLogs.Value :
+						val.disableWarningLogs.Value)
+						__0 &= ~BepInEx.Logging.LogLevel.Warning;
 
-					return true;
+					if(useDefault ? cfg.disableInfoLogs.Value :
+						val.disableInfoLogs.Value)
+						__0 &= ~BepInEx.Logging.LogLevel.Info;
+
+					if(useDefault ? cfg.disableMessageLogs.Value :
+						val.disableMessageLogs.Value)
+						__0 &= ~BepInEx.Logging.LogLevel.Message;
+
+					if(useDefault ? cfg.disableErrorLogs.Value :
+						val.disableErrorLogs.Value)
+						__0 &= ~BepInEx.Logging.LogLevel.Error;
+
+					if(active && __0 != 0) return true;
+
+					if(!active && name == ModName.Trim()) return true;//only this mod can print null logs
+
+					return false;
 				}
 			}
 
