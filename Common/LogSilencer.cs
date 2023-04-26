@@ -68,7 +68,7 @@ namespace Log_Silencer
 				bool btn;
 				int maxWidth = 350;
 				if(modList.Length > 0)
-					if((btn = GUILayout.Button(new GUIContent { text = $"selected mod: {modList[selectedMod]}" },
+					if((btn = GUILayout.Button(new GUIContent { text = $"Selected Mod: {modList[selectedMod]}", tooltip = "select the effected mod" },
 						GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true), GUILayout.MaxWidth(maxWidth))) || selectingMod)
 					{
 						selectingMod = !(btn && selectingMod);//if dropdown btn was pressed
@@ -86,8 +86,8 @@ namespace Log_Silencer
 					}
 				GUILayout.Space(5);
 
-				var savePress = GUILayout.Button(new GUIContent { text = "Save Default To Mod", tooltip = entry.Description.Description }, GUILayout.ExpandWidth(true));
-				var clearPress = GUILayout.Button(new GUIContent { text = "Clear Selected Mod", tooltip = entry.Description.Description }, GUILayout.ExpandWidth(true));
+				var savePress = GUILayout.Button(new GUIContent { text = "Save Default To Mod", tooltip = "Save the currently set \"Default Settings\" to Selected Mod" }, GUILayout.ExpandWidth(true));
+				var clearPress = GUILayout.Button(new GUIContent { text = "Clear Selected Mod", tooltip = "Clear the Selected Mod to default values" }, GUILayout.ExpandWidth(true));
 				GUILayout.EndVertical();
 
 				if(clearPress)
